@@ -5,4 +5,4 @@ const {
   addContact,
 } = require('./contacts.js');
 
-getContactById(7);
+removeContact(7);

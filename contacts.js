@@ -27,7 +27,18 @@ async function getContactById(contactId) {
 }
 
 async function removeContact(contactId) {
-  const contactsList = await listContacts();
+  try {
+    const contactsList = await listContacts();
+    const index = contactsList.findIndex(contact => {
+      const Id = Number(contact.id);
+      return Id === contactId;
+    });
+    contactsList.splice(index, 1);
+
+    return contactsList;
+  } catch (error) {
+    console.error(error);
+  }
 
   // ...твой код
 }
