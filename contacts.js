@@ -15,6 +15,13 @@ async function listContacts () {
 }
 
 function getContactById(contactId) {
+    const contactsList = listContacts();
+    const getContact = contactsList.find(contact => {
+        contact.id === contactId;
+    })
+
+    console.log(getContact);
+
   // ...твой код
 }
 

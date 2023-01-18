@@ -6,4 +6,4 @@ const {
 } = require("./contacts.js");
 
 
-listContacts();
+getContactById(5);
