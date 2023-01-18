@@ -3,26 +3,22 @@ const path = require('path');
 
 const contactsPath = path.resolve('./db/contacts.json');
 
-async function listContacts () {
-    try {
-        const contactsListJson = await fs.readFile(contactsPath, "utf8");
-        const contactsListArray = JSON.parse(contactsListJson);
-        console.log(contactsListArray);
-        return contactsListArray;
-    } catch(error) {
-        console.error(error);
-    }
+async function listContacts() {
+  try {
+    const contactsListJson = await fs.readFile(contactsPath, 'utf8');
+    const contactsListArray = JSON.parse(contactsListJson);
+    return contactsListArray;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-function getContactById(contactId) {
-    const contactsList = listContacts();
-    const getContact = contactsList.find(contact => {
-        contact.id === contactId;
-    })
-
-    console.log(getContact);
-
-  // ...твой код
+async function getContactById(contactId) {
+  const contactsList = await listContacts();
+  const getContact = contactsList.find(contact => {
+    const Id = Number(contact.id);
+    return Id === contactId;
+  });
 }
 
 function removeContact(contactId) {
@@ -33,10 +29,9 @@ function addContact(name, email, phone) {
   // ...твой код
 }
 
-
 module.exports = {
-    listContacts,
-    getContactById,
-    removeContact,
-    addContact,
-}
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+};

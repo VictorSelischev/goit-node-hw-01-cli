@@ -3,7 +3,6 @@ const {
   getContactById,
   removeContact,
   addContact,
-} = require("./contacts.js");
+} = require('./contacts.js');
 
-
-getContactById(5);
+getContactById(7);
