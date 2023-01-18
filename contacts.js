@@ -28,9 +28,9 @@ async function removeContact(contactId) {
       const Id = Number(contact.id);
       return Id === contactId;
     });
-    contactsList.splice(index, 1);
+    // contactsList.splice(index, 1);
+    fs.writeFile(contactsPath, contactsList.splice(index, 1));
 
-    return contactsList;
   } catch (error) {
     console.error(error);
   }
