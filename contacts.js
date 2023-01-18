@@ -10,11 +10,8 @@ async function listContacts () {
         console.log(contactsListArray);
         return contactsListArray;
     } catch(error) {
-        console.log(error)
+        console.error(error);
     }
-
-    
-  // ...твой код
 }
 
 function getContactById(contactId) {
