@@ -14,14 +14,21 @@ async function listContacts() {
 }
 
 async function getContactById(contactId) {
-  const contactsList = await listContacts();
-  const getContact = contactsList.find(contact => {
-    const Id = Number(contact.id);
-    return Id === contactId;
-  });
+  try {
+    const contactsList = await listContacts();
+    const getContact = contactsList.find(contact => {
+      const Id = Number(contact.id);
+      return Id === contactId;
+    });
+    return getContact;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-function removeContact(contactId) {
+async function removeContact(contactId) {
+  const contactsList = await listContacts();
+
   // ...твой код
 }
 
