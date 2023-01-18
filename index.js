@@ -5,4 +5,4 @@ const {
   addContact,
 } = require('./contacts.js');
 
-removeContact(7);
+addContact('Victor', 'victor@gmail.com', '(067) 895-37-44' );
