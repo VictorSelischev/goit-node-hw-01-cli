@@ -15,11 +15,7 @@ async function listContacts() {
 async function getContactById(contactId) {
   try {
     const contactsList = await listContacts();
-    const getContact = contactsList.find(contact => {
-      const Id = Number(contact.id);
-      return Id === contactId;
-    });
-    return getContact;
+    return contactsList.find(contact => Number(contact.id) === contactId);
   } catch (error) {
     console.error(error);
   }
@@ -47,29 +43,29 @@ async function addContact(name, email, phone) {
 
   const isName = contactsList.some(contact => name === contact.name);
   if (isName) {
-    console.error("Error username");
+    console.error('Error username');
     return;
-  };
-
+  }
 
   const id = Math.floor(Math.random() * 100);
-    console.log(`Create id ${id}`);
+  console.log(`Create id ${id}`);
   const isId = contactsList.some(contact => id === Number(contact.id));
   if (isId) {
-    console.log("Такой id существует");
+    console.log('Такой id существует');
     addContact(name, email, phone);
     return;
-  };
+  }
 
   const contact = { id: `${id}`, name, email, phone };
   // console.log(contact);
   contactsList.push(contact);
 
   // console.log(contactsList);
-  const arrayBySort = [...contactsList].sort((a, b) => Number(a.id) - Number(b.id));
+  const arrayBySort = [...contactsList].sort(
+    (a, b) => Number(a.id) - Number(b.id)
+  );
   console.log(arrayBySort);
   return arrayBySort;
-
 }
 
 module.exports = {
