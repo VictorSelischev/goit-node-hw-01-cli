@@ -35,18 +35,4 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-// invokeAction({ action: "list" });
-// invokeAction({ action: "get", id: 7 });
-// invokeAction({action: "add", name: 'Victor', email: 'victor@gmail.com', phone: '(067) 895-37-44'});
-// invokeAction({ action: "remove", id: 2 });
-
-
 invokeAction(argv);
-
-
-// const array = async () => { await listContacts() };
-// console.log(array);
-// console.log(listContacts());
-// getContactById(99);
-// addContact('Victor', 'victor@gmail.com', '(067) 895-37-44' );
-// removeContact(5);
