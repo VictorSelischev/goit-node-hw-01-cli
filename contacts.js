@@ -28,45 +28,44 @@ async function removeContact(contactId) {
       const Id = Number(contact.id);
       return Id === contactId;
     });
-    // contactsList.splice(index, 1);
-    fs.writeFile(contactsPath, contactsList.splice(index, 1));
-
+    const contacts = contactsList.splice(index, 1);
+    return contactsList;
+    // await fs.writeFile(contactsPath, contactsList.splice(index, 1), "utf8");
   } catch (error) {
     console.error(error);
   }
-
-  // ...твой код
 }
 
 async function addContact(name, email, phone) {
-  const contactsList = await listContacts();
+  try {
+    const contactsList = await listContacts();
 
-  const isName = contactsList.some(contact => name === contact.name);
-  if (isName) {
-    console.error('Error username');
-    return;
+    const isName = contactsList.some(contact => name === contact.name);
+    if (isName) {
+      console.error('Error username');
+      return;
+    }
+
+    const id = Math.floor(Math.random() * 100);
+    console.log(`Create id ${id}`);
+    const isId = contactsList.some(contact => id === Number(contact.id));
+    if (isId) {
+      console.log('Такой id существует');
+      addContact(name, email, phone);
+      return;
+    }
+
+    const contact = { id: `${id}`, name, email, phone };
+    contactsList.push(contact);
+    const arrayBySort = [...contactsList].sort(
+      (a, b) => Number(a.id) - Number(b.id)
+    );
+    return arrayBySort;
+  } catch (error) {
+    console.error(error);
   }
-
-  const id = Math.floor(Math.random() * 100);
-  console.log(`Create id ${id}`);
-  const isId = contactsList.some(contact => id === Number(contact.id));
-  if (isId) {
-    console.log('Такой id существует');
-    addContact(name, email, phone);
-    return;
-  }
-
-  const contact = { id: `${id}`, name, email, phone };
-  // console.log(contact);
-  contactsList.push(contact);
-
-  // console.log(contactsList);
-  const arrayBySort = [...contactsList].sort(
-    (a, b) => Number(a.id) - Number(b.id)
-  );
-  console.log(arrayBySort);
-  return arrayBySort;
 }
+
 
 module.exports = {
   listContacts,
