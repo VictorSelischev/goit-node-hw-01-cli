@@ -28,7 +28,7 @@ async function removeContact(contactId) {
       contact => Number(contact.id) === contactId
     );
     const contacts = contactsList.splice(index, 1);
-    // await fs.writeFile(contactsPath, contactsList, 'utf8');
+    await fs.writeFile(contactsPath, JSON.stringify(contactsList), 'utf8');
     return contactsList;
   } catch (error) {
     console.error(error);
@@ -59,6 +59,8 @@ async function addContact(name, email, phone) {
     const arrayBySort = [...contactsList].sort(
       (a, b) => Number(a.id) - Number(b.id)
     );
+
+    await fs.writeFile(contactsPath, JSON.stringify(arrayBySort), "utf8");
     return arrayBySort;
   } catch (error) {
     console.error(error);
